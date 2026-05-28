@@ -35,4 +35,4 @@
 	- ./main.o
 
 **NOTA**
-- Subiré los archivos con comentarios explicando cada parte del codigo individualmente para tener mejor organización y antes de la entrega final lo cambiaré donde se cumplan las normas de programación
+- En caso de haber archivos con comentarios que no cumplen con las normas de programación es para organizacion personal, despues se eliminaran y se subiran siguiendo estas normas.
