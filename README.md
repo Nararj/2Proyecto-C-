@@ -33,3 +33,6 @@
 - Compilar todos los archivos juntos usando un compilador de C++ y ejecutar el programa resultante (en IOs)
 	- g++ main.cpp  -o main.o
 	- ./main.o
+
+**NOTA**
+- Subiré los archivos con comentarios explicando cada parte del codigo individualmente para tener mejor organización y antes de la entrega final lo cambiaré donde se cumplan las normas de programación
