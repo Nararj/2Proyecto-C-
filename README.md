@@ -4,10 +4,9 @@
 - La idea de este proyecto es es permitir al usuario registrar, organizar y visualizar videojuegos según su género, el sistema incluye diferentes tipos de videojuegos, como juegos de acción, RPG y aventura gráfica, cada uno con características específicas. La clase base 'Videojuego' contiene la información general compartida por todos los juegos, mientras que las clases 'JuegoAccion', 'JuegoRPG' y 'JuegoAventuraGrafica' heredan de ella mediante herencia, permitiendo reutilizar atributos y métodos, mientras que la clase 'Biblioteca' administra todos los videojuegos almacenados mediante un vector, y la clase 'Usuario' representa a la persona que utiliza el sistema y posee una biblioteca propia.
 
 **PARA QUE SIRVE**
-- Registrar y almacenar videojuegos.
+- Registrar y almacenar videojuegos
 - Agregar videojuegos
 - Ver videojuegos registrados
-- Buscar por género
 - Mostrar información detallada
 - Calificar juegos
 - Crear una biblioteca personal
