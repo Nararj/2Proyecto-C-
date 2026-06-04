@@ -43,13 +43,14 @@ int main() {
         new JuegoAventuraGrafica(
             "Life is Strange",
             "PC",
-            8.5,
+            10,
             15
         );
 
 // usuario.getBiblioteca() llama a un metodo getter del obejto usuario que devuelve una referencia al obejto interno que maneja la coleccion 
 // de juegos llamada Biblioteca, despues de obtener una biblioteca se manda a llamar al metodo agregarjuego y pasamos el puntero correspondiente
 // que los añade a la lista
+// Devuelve una refrencia (&)
 
     // Agregar juegos
     usuario.getBiblioteca()

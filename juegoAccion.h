@@ -33,15 +33,14 @@ public:
     }
 
 // Es un metodo override (asegura que un método en una clase derivada reemplace correctamente a un método virtual de la clase base), y se sobreesrcibe 
-// el metodo mostrarInfo. 'Videojuego::mostrarInfo();' utiliza un operador de resolucion de ambito :: (Se utiliza para especificar o cambiar el contexto 
-// (o ámbito) al que pertenece un identificador, permitiendo acceder a clases, espacios de nombres) (este operador no puede ser sobrecargado) para mandar a llamar la funcion
-// de impresion de la clase padre y añade el cout del atributo que añadimos en esta clase, 'violencia'
+// el metodo mostrarInfo. mostrarDatosBasicos(); utiliza el metodo de la clase padre para mostrar el nombre, plataforma y
+// calificacion, y añade el cout del atributo que añadimos en esta clase, 'violencia'
     // Sobreescritura
-    void mostrarInfo() {
+    void mostrarInfo() override {
 
         cout << "\nJuego de Accion" << endl;
 
-        Videojuego::mostrarInfo();
+        mostrarDatosBasicos();
 
         cout << "Violencia: "
              << violencia << endl;
