@@ -1,50 +1,80 @@
+/*
+ *
+ * Proyecto guardar videojuegos
+ * Narayana Rajaram López
+ * A01714315
+ * 04/06/2026
+ * Version : 3
+ * Esta clase define objeto de tipo juegoAccion que agrega el atributo
+ * de violencia.
+ * Sobreescribe el metodo mostrarInfo() para mostrar la informacion 
+ * especifica de los juegos de accion.
+ * Nombre, plataforma, calificacion, violencia.
+ */
+
 #ifndef JUEGOACCION_H
 #define JUEGOACCION_H
 
 #include "Videojuego.h"
 
-// Clase hija que hereda de Videojuego, adquiere el nombre, plataforma y calificacion
+//Declarar objeto JuegoAccion que hereda de Videojuego
 class JuegoAccion : public Videojuego {
 
-// Vioencia es un atributo propio y privado de la clase JuegoAccion
-
+//Declarar las variables de instancia privadas
 private:
-    int violencia;
 
+    int violencia;
+  
+//Declarar metodos públicos
 public:
 
-// Antes de llamar al codigo de esta clase, llama al constructor de la clase padre Videojuego para inicializar los atributos heredados
-// para que "limpie" el nombre, plataforma y calificacion para despues proseguir con 'violencia'
+    JuegoAccion();
 
-    // Constructor vacío
-    JuegoAccion() : Videojuego() {
-        violencia = 0;
-    }
-
-// En este caso se reciben 4 parametros (nombre, plataforma, calificacion y violencia) donde los primeros 3 vienen automaticamente de Videojuego
-// y el cuarto es guardado de forma local
-
-    // Constructor con parámetros
     JuegoAccion(string nom, string plat,
-                 float cal, int viol)
-        : Videojuego(nom, plat, cal) {
+                float cal, int viol);
 
-        violencia = viol;
-    }
-
-// Es un metodo override (asegura que un método en una clase derivada reemplace correctamente a un método virtual de la clase base), y se sobreesrcibe 
-// el metodo mostrarInfo. mostrarDatosBasicos(); utiliza el metodo de la clase padre para mostrar el nombre, plataforma y
-// calificacion, y añade el cout del atributo que añadimos en esta clase, 'violencia'
-    // Sobreescritura
-    void mostrarInfo() override {
-
-        cout << "\nJuego de Accion" << endl;
-
-        mostrarDatosBasicos();
-
-        cout << "Violencia: "
-             << violencia << endl;
-    }
+    void mostrarInfo() override;
 };
+
+/**
+ * Constructor por defecto.
+ */
+JuegoAccion::JuegoAccion() : Videojuego() {
+
+    violencia = 0;
+}
+
+/**
+ * Constructor con parámetros.
+ *
+ * @param nom nombre del juego
+ * @param plat plataforma
+ * @param cal calificación
+ * @param viol nivel de violencia
+ */
+JuegoAccion::JuegoAccion(string nom,
+                         string plat,
+                         float cal,
+                         int viol)
+    : Videojuego(nom, plat, cal) {
+
+    violencia = viol;
+}
+
+/**
+ * mostrarInfo muestra toda la información
+ * del videojuego.
+ */
+void JuegoAccion::mostrarInfo() {
+
+    cout << "\n JUEGO DE ACCION "
+         << endl;
+
+    mostrarDatosBasicos();
+
+    cout << "Nivel de violencia: "
+         << violencia
+         << endl;
+}
 
 #endif

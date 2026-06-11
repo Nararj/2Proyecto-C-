@@ -1,46 +1,82 @@
+/*
+ *
+ * Proyecto guardar videojuegos
+ * Narayana Rajaram López
+ * A01714315
+ * 04/06/2026
+ * Version : 3
+ * Esta clase define objeto de tipo juegoAventuraGrafica que agrega el atributo
+ * de decisiones.
+ * Sobreescribe el metodo mostrarInfo() para mostrar la informacion especifica
+ * de los juegos de aventura grafica.
+ * Nombre, plataforma, calificacion, decisiones
+ */
+
 #ifndef JUEGOAVENTURAGRAFICA_H
 #define JUEGOAVENTURAGRAFICA_H
 
 #include "Videojuego.h"
 
-// Clase hija que hereda de Videojuego, adquiere el nombre, plataforma y calificacion
+//Declarar objeto JuegoAventuraGrafica que hereda de Videojuego
 class JuegoAventuraGrafica : public Videojuego {
 
+//Declarar las variables de instancia privadas
 private:
+
     int decisiones;
 
+//Declarar metodos públicos
 public:
 
-    JuegoAventuraGrafica() : Videojuego() {
-        decisiones = 0;
-    }
+    JuegoAventuraGrafica();
 
-// En este caso se reciben 4 parametros (nombre, plataforma, calificacion y violencia) donde los primeros 3 vienen automaticamente de Videojuego
-// y el cuarto es guardado de forma local, en este caso son las decisiones que se tomaron
+    JuegoAventuraGrafica(string nom, string plat,
+                         float cal, int dec);
 
-    JuegoAventuraGrafica(string nom,
-                         string plat,
-                         float cal,
-                         int decis)
-        : Videojuego(nom, plat, cal) {
-
-        decisiones = decis;
-    }
-
-// Al igual que en JuegoAccion se utiliza un metodo override para sobreescribir el metodo mostrarInfo,
-// se manda a llamar al metodo de la clase padre y en este caso se añade el cout del nuevo atributo 'decisiones'
-
-    void mostrarInfo() override {
-
-        cout << "\nJuego de Aventura Grafica"
-             << endl;
-
-        mostrarDatosBasicos();
-
-        cout << "Cantidad de decisiones: "
-             << decisiones
-             << endl;
-    }
+    void mostrarInfo() override;
 };
+
+/**
+ * Constructor por defecto.
+ */
+JuegoAventuraGrafica::JuegoAventuraGrafica()
+    : Videojuego() {
+
+    decisiones = 0;
+}
+
+/**
+ * Constructor con parámetros.
+ *
+ * @param nom nombre del juego
+ * @param plat plataforma
+ * @param cal calificación
+ * @param dec cantidad de decisiones
+ */
+JuegoAventuraGrafica::JuegoAventuraGrafica(
+    string nom,
+    string plat,
+    float cal,
+    int dec)
+    : Videojuego(nom, plat, cal) {
+
+    decisiones = dec;
+}
+
+/**
+ * mostrarInfo muestra toda la información
+ * del videojuego.
+ */
+void JuegoAventuraGrafica::mostrarInfo() {
+
+    cout << "\n JUEGO DE AVENTURA GRAFICA "
+         << endl;
+
+    mostrarDatosBasicos();
+
+    cout << "Cantidad de decisiones: "
+         << decisiones
+         << endl;
+}
 
 #endif

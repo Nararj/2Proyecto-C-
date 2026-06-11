@@ -1,66 +1,113 @@
+/*
+ *
+ * Proyecto guardar videojuegos
+ * Narayana Rajaram López
+ * A01714315
+ * 04/06/2026
+ * Version : 3
+ * Esta clase define objeto de tipo Videojuego que contiene las clases heredadas
+ * Nombre, plataforma, calificacion.
+ */
+
 #ifndef VIDEOJUEGO_H
 #define VIDEOJUEGO_H
 
 #include <iostream>
 using namespace std;
 
-// Define la clase padre llamada videojuego
+using namespace std;
+
+//Declaracion de clase videojuego que es abstracta
 class Videojuego {
-
-// Atributos protegidos para que las clases hijas puedan acceder a ellos
-
+  
+//Declarar variables de instancia
 protected:
-    // Atributos protegidos
+
     string nombre;
     string plataforma;
     float calificacion;
 
-// Constructores y métodos públicos
-
+//Declaro los métodos que va a tener el objeto
 public:
 
-// Todo inicia sin parametros y la calificacion se inicializa en 0, el nombre y la plataforma se inicializan como cadenas vacias
+    Videojuego();
+    Videojuego(string nom,
+               string plat,
+               float cal);
 
-    // Constructor vacío
-    Videojuego() {
-        nombre = "";
-        plataforma = "";
-        calificacion = 0;
-    }
+    string getNombre();
 
-// Recibe el nombre, la plataforma y la calificacion del juego y los asigna a los atributos correspondientes
+    float getCalificacion();
 
-    // Constructor con parámetros
-    Videojuego(string nom, string plat, float cal) {
-        nombre = nom;
-        plataforma = plat;
-        calificacion = cal;
-    }
+    void mostrarDatosBasicos();
 
-// Metodo reutilizable que van a usar las clases hijas para mostrar los datos basicos del juego
-
-void mostrarDatosBasicos() {
-
-        cout << "Nombre: "
-             << nombre << endl;
-
-        cout << "Plataforma: "
-             << plataforma << endl;
-
-        cout << "Calificacion: "
-             << calificacion << endl;
-    }
-
-// Clase abstracta con poliformismo, este metodo puede ser modificado y sobreescrito por las clases hijas 
-// ya que gracias a que tenemos un virtual (una clase base, donde se le indica al compilador que la versión 
-// del método a ejecutar debe determinarse según el tipo de objeto real en el momento de ejecutarse) y 
-// cuando usemos punteros en biblioteca, el compilador sabra llamar al metodo correcto dependiendo del tipo de 
-//juego que se esta mostrando, esto es poliformismo en tiempo de ejecucion
-
-
-    // Método virtual puro
- virtual void mostrarInfo() = 0;
+    virtual void mostrarInfo() = 0; //método abstracto será sobreescrito
 
 };
+
+/**
+ * Constructor por defecto.
+ */
+Videojuego::Videojuego() {
+
+    nombre = "";
+    plataforma = "";
+    calificacion = 0;
+}
+
+/**
+ * Constructor con parámetros.
+ *
+ * @param nom nombre del videojuego
+ * @param plat plataforma
+ * @param cal calificación
+ */
+Videojuego::Videojuego(string nom,
+                       string plat,
+                       float cal) {
+
+    nombre = nom;
+    plataforma = plat;
+    calificacion = cal;
+}
+
+/**
+ * getNombre regresa el nombre del videojuego.
+ *
+ * @return nombre
+ */
+string Videojuego::getNombre() {
+
+    return nombre;
+}
+
+/**
+ * getCalificacion regresa la calificación.
+ *
+ * @return calificación
+ */
+float Videojuego::getCalificacion() {
+
+    return calificacion;
+}
+
+/**
+ * mostrarDatosBasicos muestra la información básica
+ * de cualquier videojuego.
+ */
+void Videojuego::mostrarDatosBasicos() {
+
+    cout << "Nombre: "
+         << nombre
+         << endl;
+
+    cout << "Plataforma: "
+         << plataforma
+         << endl;
+
+    cout << "Calificacion: "
+         << calificacion
+         << endl;
+}
 
 #endif

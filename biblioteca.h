@@ -1,3 +1,18 @@
+/*
+ *
+ * Proyecto guardar videojuegos
+ * Narayana Rajaram López
+ * A01714315
+ * 04/06/2026
+ * Version : 3
+ * Esta clase almacena videojuegos de distintos tipos en un vector de punteros a videojuegos, 
+ * esto es para poder usar el polimorfismo en tiempo de ejecucion y guardar objetos de las 
+ * clases hijas (JuegoAccion, JuegoRPG y JuegoAventuraGrafica) en un vector de la clase padre 
+ * (Videojuego), esta clase es utilizada por la función principal del programa y es parte del 
+ * proyecto GuardarVideojuegos.
+ * 
+ */
+
 #ifndef BIBLIOTECA_H
 #define BIBLIOTECA_H
 
@@ -7,50 +22,113 @@
 
 using namespace std;
 
-// En esta clase se guardan la coleccion de jeugos del usuario, esta creada para el uso del polimorfismo
-
-// Clase Biblioteca
 class Biblioteca {
 
+//Declarar las variables privadas de instancia
 private:
 
-// Se define un vector de punteros (*) a objetos de tipo Videojuego, esto es para que se puedan guardar objetos 
-// de las clases hijas (JuegoAccion, JuegoRPG y JuegoAventuraGrafica), esto se tiene que hacer asi ya que si un 
-// vector no peude almacenar clases heredadas de diferentes tamaños asi que al usar punteros a la clase padre este
-// vector puede guardar direcciones de memoria en todas las clases
-
-    // Vector de videojuegos
     vector<Videojuego*> juegos;
 
+//Declarar constructor por default y metodos públicos.
 public:
 
-// Recibe la direccion de memoria de un juego y lo añade al fianl del vector con .push_back, esto para que se 
-// puedan guardar juegos de cualquier clase hija, esto sigue siendo polimorfismo en tiempo de ejecucion
+    Biblioteca();
 
-    // Agregar juego
-    void agregarJuego(Videojuego* juego) {
+    void agregarJuego(
+        Videojuego* juego
+    );
 
-        juegos.push_back(juego);
+    void mostrarJuegos();
+
+    void buscarJuego(
+        string nombreBuscado
+    );
+
+};
+
+/**
+ * Constructor.
+ */
+Biblioteca::Biblioteca() {
+
+}
+
+/**
+ * agregarJuego agrega un videojuego a la biblioteca.
+ * 
+ * Agrega el puntero al videojuego al vector de juegos.
+ *
+ * @param juego apuntador al videojuego
+ */
+void Biblioteca::agregarJuego(
+    Videojuego* juego) {
+
+    juegos.push_back(juego);
+}
+
+/**
+ * mostrarJuegos muestra la información de todos los videojuegos
+ * 
+ * Utiliza juegos[i] para acceder a cada elemento del vector, 
+ * recorre el vector juegos y accede a cada elemento almacenado.
+ * Cada posicion del vector contiene un apuntador a un objeto Videojuego.
+ * 
+ * Por medio del metodo mostrarInfo() se muestrala informacion de 
+ * cada videojuego.
+ */
+void Biblioteca::mostrarJuegos() {
+
+    cout << "\n=== VIDEOJUEGOS ==="
+         << endl;
+
+    if (juegos.size() == 0) {
+
+        cout << "No hay juegos registrados."
+             << endl;
+
+        return;
     }
 
-// En 'juegos[i]->mostrarInfo()' el ciclo recorre todos los elementos guardados y al acceder a juegos[i], 
-// estamos posicionados sobre un puntero a un objeto de tipo Videojuego, al usar '->' accedemos a los metodos
-// del objeto apuntado, y al llamar a mostrarInfo() se ejecuta el metodo correspondiente dependiendo del tipo
-// de juego que se esta mostrando, esto es poliformismo en tiempo de ejecucion
-// Aca gracias a que tenemos un virtual en la clase mostrarInfo de la clase padre cuando el ciclo pasa por un puntero que apunta a un objeto 
-// de una clase hija, el compilador llama a la version del metodo mostrarInfo que corresponde a la clase hija y muestra la infroamcion 
-// especifica de cada clase, no solo la que se encunetra en la clase padre
+    for (int i = 0;
+         i < juegos.size();
+         i++) {
 
-    // Mostrar juegos
-    void mostrarJuegos() {
+        juegos[i]->mostrarInfo();
+    }
+}
 
-        for (int i = 0;
-             i < juegos.size();
-             i++) {
+/**
+ * buscarJuego busca un videojuego por nombre.
+ *
+ * Recorre el vector juegos[i] y compara el nombre de cada videojuego 
+ * con el nombre recibido. Si encuentra una coincidencia, muestra 
+ * la informacion del juego.
+ * 
+ * @param nombreBuscado nombre a buscar
+ */
+void Biblioteca::buscarJuego(
+    string nombreBuscado) {
+
+    bool encontrado = false;
+
+    for (int i = 0;
+         i < juegos.size();
+         i++) {
+
+        if (juegos[i]->getNombre()
+            == nombreBuscado) {
 
             juegos[i]->mostrarInfo();
+
+            encontrado = true;
         }
     }
-};
+
+    if (!encontrado) {
+
+        cout << "\nJuego no encontrado."
+             << endl;
+    }
+}
 
 #endif

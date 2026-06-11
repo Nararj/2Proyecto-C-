@@ -1,44 +1,80 @@
+/*
+ *
+ * Proyecto guardar videojuegos
+ * Narayana Rajaram López
+ * A01714315
+ * 04/06/2026
+ * Version : 3
+ * Esta clase define objeto de tipo juegoRPG que agrega el atributo
+ * de horas de historia.
+ * Sobreescribe el metodo mostrarInfo() para mostrar la informacion 
+ * especifica de los juegos RPG.
+ * Nombre, plataforma, calificacion, horas de historia
+ */
+
 #ifndef JUEGORPG_H
 #define JUEGORPG_H
 
 #include "Videojuego.h"
 
-// Clase hija que hereda de Videojuego, adquiere el nombre, plataforma y calificacion
+//Declarar objeto JuegoRPG que hereda de Videojuego
 class JuegoRPG : public Videojuego {
 
+//Declarar las variables de instancia privadas
 private:
+
     int horasHistoria;
 
+//Declarar metodos públicos
 public:
 
-    JuegoRPG() : Videojuego() {
-        horasHistoria = 0;
-    }
-
-// En este caso se reciben 4 parametros (nombre, plataforma, calificacion y violencia) donde los primeros 3 vienen automaticamente de Videojuego
-// y el cuarto es guardado de forma local, en este caso son las horas que tardo en completar la historia
-
+    JuegoRPG();
 
     JuegoRPG(string nom, string plat,
-              float cal, int horas)
-        : Videojuego(nom, plat, cal) {
+             float cal, int horas);
 
-        horasHistoria = horas;
-    }
-
-// Al igual que en JuegoAccion se utiliza un metodo override para sobreescribir el metodo mostrarInfo,
-// se manda a llamar al metodo de la clase padre y en este caso se añade el cout del nuevo atributo 'horasHistoria'
-
-    void mostrarInfo() override {
-
-        cout << "\nJuego RPG" << endl;
-
-        mostrarDatosBasicos();
-
-        cout << "Horas de historia: "
-             << horasHistoria
-             << endl;
-    }
+    void mostrarInfo() override;
 };
+
+/**
+ * Constructor por defecto.
+ */
+JuegoRPG::JuegoRPG() : Videojuego() {
+
+    horasHistoria = 0;
+}
+
+/**
+ * Constructor con parámetros.
+ *
+ * @param nom nombre del juego
+ * @param plat plataforma
+ * @param cal calificación
+ * @param horas duración de la historia
+ */
+JuegoRPG::JuegoRPG(string nom,
+                   string plat,
+                   float cal,
+                   int horas)
+    : Videojuego(nom, plat, cal) {
+
+    horasHistoria = horas;
+}
+
+/**
+ * mostrarInfo muestra toda la información
+ * del videojuego.
+ */
+void JuegoRPG::mostrarInfo() {
+
+    cout << "\n JUEGO RPG "
+         << endl;
+
+    mostrarDatosBasicos();
+
+    cout << "Horas de historia: "
+         << horasHistoria
+         << endl;
+}
 
 #endif

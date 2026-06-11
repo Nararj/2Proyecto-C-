@@ -1,87 +1,323 @@
-// Narayana Rajaram Lopez | A01714315
+/*
+ *
+ * Proyecto guardar videojuegos
+ * Narayana Rajaram López
+ * A01714315
+ * 04/06/2026
+ * Version : 3
+ * Proyecto para la clase Programación Orientado a Objetos. Es un programa 
+ * que captura diferentes tipos de juegos con sus propios atributos y los
+ * almacena en una biblioteca para poder ver su calificación, plataforma y
+ * otros datos, permitiendo también agregar juegos a favoritos. 
+ */
 
-// Se incluyen los archivos .h
+#include <iostream>
+#include <string>
+
 #include "JuegoAccion.h"
 #include "JuegoRPG.h"
 #include "JuegoAventuraGrafica.h"
 #include "Usuario.h"
 
+
+/**
+ * Lee un entero positivo o cero y maneja errores de entrada.
+ * No acepta letras ni valores negativos.
+ *
+ * @return entero válido
+ */
+int leerEntero() {
+
+    int valor;
+
+    while (true) {
+
+        if (!(cin >> valor)) {
+
+            cout << "Error. Ingresa un numero: ";
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else if (valor < 0) {
+
+            cout << "Error. Ingresa un numero mayor o igual a 0: ";
+        }
+        else {
+
+            return valor;
+        }
+    }
+}
+
+/**
+ * Lee una calificacion entre 0 y 10 y maneja errores de entrada.
+ * No permite valores negativos ni mayores a 10
+ *
+ * @return calificacion válida
+ */
+float leerCalificacion() {
+
+    float valor;
+
+    while (true) {
+
+        if (!(cin >> valor)) {
+
+            cout << "Error. Ingresa un numero: ";
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else if (valor < 0 || valor > 10) {
+
+            cout << "Error. La calificacion debe estar entre 0 y 10: ";
+        }
+        else {
+
+            return valor;
+        }
+    }
+}
+
+/**
+ * pedirDatosBasicos solicita los datos
+ * comunes a todos los videojuegos.
+ *
+ * @param nombre nombre del videojuego
+ * @param plataforma plataforma del videojuego
+ * @param calificacion calificacion del videojuego
+ */
+void pedirDatosBasicos(
+    string &nombre,
+    string &plataforma,
+    float &calificacion) {
+
+    cin.ignore();
+
+    cout << "\nNombre: ";
+    getline(cin, nombre);
+
+    cout << "Plataforma: ";
+    getline(cin, plataforma);
+
+    cout << "Calificacion: ";
+
+    calificacion = leerCalificacion();
+}
+
 int main() {
 
-// Crear un objeto de la clase Usuario en memoria stack, donde el obejto se llama usuario y se le pasa la cadena de un nombre random
-
-    // Crear usuario
     Usuario usuario("Carlos");
 
-// Se utiliza punteros "*"" para crear obejtos que se guarden en la memoria heap
+    int opcion;
 
-    // Variable llamada Juego1 con un puntero a un objeto de tipo JuegoAccion, este llama a su constructor y le pasa los 4 paramtros, nombre, plataforma, calificacion y violencia
+    do {
 
-    // Crear videojuegos
-    JuegoAccion* juego1 =
-        new JuegoAccion(
-            "Halo",
-            "Xbox",
-            9.5,
-            8
-        );
+        cout << "\nBIBLIOTECA DE VIDEOJUEGOS "
+             << endl;
 
+        cout << "1. Agregar Juego RPG"
+             << endl;
 
-    //Variable llamada Juego2 con un puntero a un objeto de tipo JuegoRPG, este llama a su constructor y le pasa los 4 paramtros, nombre, plataforma, calificacion y horas
+        cout << "2. Agregar Juego de Accion"
+             << endl;
 
-    JuegoRPG* juego2 =
-        new JuegoRPG(
-            "Pokemon",
-            "Nintendo",
-            9.0,
-            40
-        );
+        cout << "3. Agregar Juego de Aventura Grafica"
+             << endl;
 
-    //Variable llamada Juego3 con un puntero a un objeto de tipo JuegoAventuraGrafica, este llama a su constructor y le pasa los 4 paramtros, nombre, plataforma, calificacion y decisiones
+        cout << "4. Mostrar Juegos"
+             << endl;
 
-    JuegoAventuraGrafica* juego3 =
-        new JuegoAventuraGrafica(
-            "Life is Strange",
-            "PC",
-            10,
-            15
-        );
+        cout << "5. Buscar Juego"
+             << endl;
 
-// usuario.getBiblioteca() llama a un metodo getter del obejto usuario que devuelve una referencia al obejto interno que maneja la coleccion 
-// de juegos llamada Biblioteca, despues de obtener una biblioteca se manda a llamar al metodo agregarjuego y pasamos el puntero correspondiente
-// que los añade a la lista
-// Devuelve una refrencia (&)
+        cout << "6. Agregar Favorito"
+             << endl;
 
-    // Agregar juegos
-    usuario.getBiblioteca()
-           .agregarJuego(juego1);
+        cout << "7. Mostrar Favoritos"
+             << endl;
 
-    usuario.getBiblioteca()
-           .agregarJuego(juego2);
+        cout << "8. Salir"
+             << endl;
 
-    usuario.getBiblioteca()
-           .agregarJuego(juego3);
+        cout << "\nOpcion: ";
 
-// Accedemos a la bilioteca del usuario y ejecutamos el metodo mostrarJuegos e imprime en pantalla la informacion de cada juego utilizando el metodo 
-// mostrarInfo() que es virtual y se sobreescribe en cada clase hija para mostrar la informacion especifica de cada tipo de juego, aca se usa
-// el poliformismo para llamar al metodo correcto dependiendo del tipo de juego que se esta mostrando
-    
-    // Mostrar juegos
-    usuario.getBiblioteca()
-           .mostrarJuegos();
+        opcion = leerEntero();
 
-// El obejto usuario maneja los favoritos, se llama al metodo agregarFavorito y se le pasa el nombre de un juego para añadirlo a la lista de favoritos, 
-// despues se llama al metodo mostrarFavoritos para imprimir en pantalla la lista de juegos favoritos del usuario
+        switch(opcion) {
 
-    // Agregar favoritos
-    usuario.agregarFavorito("Life Is Strange");
+        case 1: {
 
-    usuario.agregarFavorito("Stardew Valley");
+            string nombre;
+            string plataforma;
+            float calificacion;
+            int horasHistoria;
 
-// Se llama al metodo para imprimir la lista de juegos que se agregaron en favoritos 
+            pedirDatosBasicos(
+                nombre,
+                plataforma,
+                calificacion
+            );
 
-    // Mostrar favoritos
-    usuario.mostrarFavoritos();
+            cout << "Horas de historia: ";
+
+                horasHistoria = leerEntero();
+
+                Videojuego* juego =
+                    new JuegoRPG(
+                        nombre,
+                        plataforma,
+                        calificacion,
+                        horasHistoria
+                    );
+
+                usuario.getBiblioteca()
+                    .agregarJuego(juego);
+
+                cout << "\nJuego agregado."
+                    << endl;
+
+                break;
+            }
+
+        case 2: {
+
+            string nombre;
+            string plataforma;
+            float calificacion;
+            int violencia;
+
+            pedirDatosBasicos(
+                nombre,
+                plataforma,
+                calificacion
+            );
+
+            cout << "Nivel de violencia: ";
+
+            violencia = leerEntero();
+
+            Videojuego* juego =
+                new JuegoAccion(
+                    nombre,
+                    plataforma,
+                    calificacion,
+                    violencia
+                );
+
+            usuario.getBiblioteca()
+                .agregarJuego(juego);
+
+            cout << "\nJuego agregado."
+                << endl;
+
+            break;
+        }
+
+        case 3: {
+
+            string nombre;
+            string plataforma;
+            float calificacion;
+            int decisiones;
+
+            pedirDatosBasicos(
+                nombre,
+                plataforma,
+                calificacion
+            );
+
+            cout << "Cantidad de decisiones: ";
+
+            decisiones = leerEntero();
+
+            Videojuego* juego =
+                new JuegoAventuraGrafica(
+                    nombre,
+                    plataforma,
+                    calificacion,
+                    decisiones
+                );
+
+            usuario.getBiblioteca()
+                .agregarJuego(juego);
+
+            cout << "\nJuego agregado."
+                << endl;
+
+            break;
+        }
+
+        case 4: {
+
+            usuario.getBiblioteca()
+                   .mostrarJuegos();
+
+            break;
+        }
+
+        case 5: {
+
+            string nombreBuscado;
+
+            cin.ignore();
+
+            cout << "\nNombre del juego: ";
+
+            getline(cin, nombreBuscado);
+
+            usuario.getBiblioteca()
+                   .buscarJuego(
+                       nombreBuscado
+                   );
+
+            break;
+        }
+
+        case 6: {
+
+            string favorito;
+
+            cin.ignore();
+
+            cout << "\nNombre del favorito: ";
+
+            getline(cin, favorito);
+
+            usuario.agregarFavorito(
+                favorito
+            );
+
+            cout << "\nFavorito agregado."
+                 << endl;
+
+            break;
+        }
+
+        case 7: {
+
+            usuario.mostrarFavoritos();
+
+            break;
+        }
+
+        case 8: {
+
+            cout << "\nGracias :D"
+                 << endl;
+
+            break;
+        }
+
+        default: {
+
+            cout << "\nOpcion invalida."
+                 << endl;
+        }
+        }
+
+    } while(opcion != 8);
 
     return 0;
 }
