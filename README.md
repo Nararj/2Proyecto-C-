@@ -1,7 +1,7 @@
 # 2Proyecto-C-
 
 #### DESCRIPCIÓN
-- La idea de este proyecto es permitir al usuario registrar, organizar y visualizar videojuegos según su género. El sistema incluye juegos de acción, RPG y aventura gráfica, cada uno con características específicas.
+- La idea de este proyecto es permitir al usuario registrar, organizar y visualizar videojuegos según su género donde el sistema incluye juegos de acción, RPG y aventura gráfica, cada uno con características específicas.
 - La clase abstracta Videojuego contiene la información común de todos los juegos, mientras que las clases JuegoAccion, JuegoRPG y JuegoAventuraGrafica heredan de ella mediante herencia. La clase Biblioteca administra los videojuegos almacenados utilizando un vector de apuntadores a Videojuego, permitiendo aplicar polimorfismo. Finalmente, la clase Usuario representa a la persona que utiliza el sistema y posee una biblioteca propia mediante composición.
 
 #### PARA QUE SIRVE
