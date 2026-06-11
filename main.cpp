@@ -81,8 +81,8 @@ float leerCalificacion() {
 }
 
 /**
- * pedirDatosBasicos solicita los datos
- * comunes a todos los videojuegos.
+ * pedirDatosBasicos solicita los datos comunes a 
+ * todos los videojuegos.
  *
  * @param nombre nombre del videojuego
  * @param plataforma plataforma del videojuego
