@@ -78,7 +78,7 @@ void Biblioteca::agregarJuego(
  */
 void Biblioteca::mostrarJuegos() {
 
-    cout << "\n=== VIDEOJUEGOS ==="
+    cout << "\n VIDEOJUEGOS "
          << endl;
 
     if (juegos.size() == 0) {
